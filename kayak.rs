@@ -13,6 +13,7 @@ fn main() {
     let mut student_id_weight_vector: Vec<(i32, i32)> = (1..=100)
         .map(|index| (index, student_weight_distribution.sample(&mut range)))
         .collect();
+    println!("Students with their id and weight: {:?}", student_id_weight_vector);
 
     // Sorting the student_id_weight_vector based on student weigh i.e. the 2nd element of tuple (0 based indexing)
     student_id_weight_vector.sort_by_key(|k| k.1);
