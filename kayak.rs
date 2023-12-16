@@ -1,7 +1,14 @@
+// Open the link https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=334c9e2f82f42509ac2d780f2cca1b11 and click on Run button
+//If the above link does not work open the link https://play.rust-lang.org/?version=stable&mode=debug&edition=2021 and paste the below code. Click on Run Button
+
+//Language Used - Rust
+
 use rand::distributions::{Distribution, Uniform};
+use rand::{rngs::StdRng, SeedableRng};
+
 
 fn main() {
-    let mut range = rand::thread_rng();
+    let mut seeded_range = StdRng::seed_from_u64(15);
     
     // Using Uniform distribution for generating random numbers between 100 and 250, where both 100 and 250 are included
     let student_weight_distribution = Uniform::new_inclusive(100, 250);
@@ -11,7 +18,7 @@ fn main() {
     // Using map function of the vector to initialize the vector with student id and student weight tuple pair
     // Student weight is randomly genereated using Uniform distribution
     let mut student_id_weight_vector: Vec<(i32, i32)> = (1..=100)
-        .map(|index| (index, student_weight_distribution.sample(&mut range)))
+        .map(|index| (index, student_weight_distribution.sample(&mut seeded_range)))
         .collect();
     println!("Students with their id and weight: {:?}", student_id_weight_vector);
 
